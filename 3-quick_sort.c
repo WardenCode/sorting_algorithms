@@ -18,7 +18,7 @@ void trade(int *a, int *b)
  * _split - splits the array and takes the last element as pivot
  *  @arr: input array
  *  @first: first element
- *  @last: The last element
+ *  @last: last element
  *  @size: size
  *  Return: integer
  */
