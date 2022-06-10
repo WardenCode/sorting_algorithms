@@ -57,6 +57,7 @@ void insertion_sort_list(listint_t **list)
 				*list = holder;
 			}
 			print_list(*list);
+			node = *list;
 		}
 	}
 }
