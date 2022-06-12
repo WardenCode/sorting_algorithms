@@ -37,6 +37,7 @@ size_t partition(int *array, size_t start, size_t end, size_t size)
 			if (i != j)
 			{
 				trade(&array[i], &array[j]);
+				print_array(array, size);
 			}
 		}
 	}
