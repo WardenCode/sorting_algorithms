@@ -11,54 +11,75 @@ void trade(int *a, int *b)
 
 	x = *a;
 	*a = *b;
-	*b = tmp;
+	*b = x;
 }
 
 /**
- * _split - splits the array and takes the last element as pivot
- *  @arr: input array
- *  @first: first element
- *  @last: last element
- *  @size: size
- *  Return: integer
+ * partition - sorts an array of integers in ascending order
+ * using the Quick sort algorithm
+ * @end: final array
+ * @start: first array
+ * @array: array of integers
+ * @size: size of array
+ * Return: i + 1.
  */
-int _split(int *arr, int first, int last, size_t size)
+size_t partition(int *array, size_t start, size_t end, size_t size)
 {
-	int piv;
-	int i = (first);
-	int j;
+	size_t i, j;
+	int pivot = array[end];
 
-	piv = arr[last];
-	for (j = min; j < last; j++)
+	i = start - 1;
+	for (j = start; j < end; j++)
 	{
-		if (arr[j] <= piv)
+		if (array[j] < pivot)
 		{
-			trade(&arr[i], &arr[j]);
-
-			if (i != j)
-				print_array(arr, size);
-
 			i++;
+			if (i != j)
+			{
+				trade(&array[i], &array[j]);
+			}
 		}
 	}
 
-	trade(&arr[i], &arr[last]);
-	if (i != j)
+	if (pivot < array[i + 1])
 	{
-		print_array(arr, size);
+		trade(&array[i + 1], &array[end]);
+		print_array(array, size);
 	}
-	return (i);
+	return (i + 1);
 }
 
 /**
- * quick_sort - ...
- * @array: ...
- * @size: ...
+ * quick_sort_imp - sorts an array of integers in ascending
+ * order using the Quick sort algorithm
  *
+ * @array: array of integers
+ *
+ * @low: size of array
+ * @hi: size of array
+ * @size: size of array
+ */
+void quick_sort_imp(int *array, int low, int hi, size_t size)
+{
+	int par;
+
+	if (low < hi)
+	{
+		par = partition(array, low, hi, size);
+		quick_sort_imp(array, low, par - 1, size);
+		quick_sort_imp(array, par + 1, hi, size);
+	}
+}
+
+/**
+ * quick_sort - sorts an array of integers in ascending
+ * order using the Quick sort algorithm
+ *
+ * @array: array of integers
+ *
+ * @size: size of array
  */
 void quick_sort(int *array, size_t size)
 {
-/**
- * this is going to have a recursive func
- */
+	quick_sort_imp(array, (size_t)0, size - 1, size);
 }
